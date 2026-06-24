@@ -23,7 +23,10 @@ const Dashboard = ({ notes }) => {
             </div>
             <TimerWidget />
         </div>
-        <NewsWidget />
+        <div className={styles.newsSection}>
+            <NewsWidget />
+            <button className={styles.browserBtn}>Browse</button>
+        </div>
     </div>
 }
 

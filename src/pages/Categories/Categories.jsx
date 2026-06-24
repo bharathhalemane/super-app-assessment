@@ -29,7 +29,7 @@ const categories = [
 ];
 
 const Categories = () => {
-    const navigate =useNavigate()
+    const navigate = useNavigate()
     const setCategories = useStore((state) => state.setCategories)
 
     const [selectedCategories, setSelectedCategories] = useState([])
@@ -38,7 +38,7 @@ const Categories = () => {
         if (selectedCategories.includes(title)) {
             setSelectedCategories(
                 selectedCard.filter((item) => item !== title)
-            )            
+            )
         } else {
             setSelectedCategories([...selectedCategories, title])
         }
@@ -52,7 +52,7 @@ const Categories = () => {
 
     const handleNextPage = () => {
         setCategories(selectedCategories)
-        navigate("/dashboard")
+        navigate("/dashboard-notes")
     }
     return <>
         <div className={style.categoriesPage}>
@@ -76,7 +76,7 @@ const Categories = () => {
                 </div>
                 <p className={style.error}>Minimum 3 category required</p>
             </div>
-            <div className={style.rightSection }>
+            <div className={style.rightSection}>
                 <div className={style.categoriesSection}>{
                     categories.map((item, index) => (
                         <CategoryCard key={index} title={item.title} selected={selectedCategories.includes(item.title)} image={item.image} onClick={() => handleSelectedCategory(item.title)} />
