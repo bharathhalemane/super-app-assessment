@@ -16,7 +16,14 @@ const AppRoutes = () => {
                     </ProtectedRoute>
                 } />
                 <Route path="/dashboard" element={
-                        <Dashboard />
+                    <ProtectedRoute>
+                        <Dashboard notes={false} />
+                    </ProtectedRoute>
+                } />
+                <Route path="/dashboard-notes" element={
+                    <ProtectedRoute>
+                        <Dashboard notes={true} />
+                    </ProtectedRoute>
                 } />
             </Routes>
         </BrowserRouter>
