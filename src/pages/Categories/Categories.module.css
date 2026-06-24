@@ -1,0 +1,209 @@
+.categoriesPage {
+    min-height: 100vh;
+    background-color: #000;
+    color: #fff;
+
+    display: grid;
+    grid-template-columns: 35% 65%;
+    padding: 50px;
+    gap: 40px;
+}
+
+.selectedSection {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.title {
+    font-size: 3rem;
+    color: #72db73;
+    font-family: "Single Day", cursive;
+    margin-bottom: 30px;
+}
+
+.heading {
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 1.2;
+    max-width: 300px;
+
+    margin-bottom: 30px;
+}
+
+.selectedCard {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #11a300;
+    color: white;
+    padding: 8px 20px;
+    border-radius: 20px;
+}
+
+.selectedCategories {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.selectedCard button {
+    border: none;
+    background: transparent;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer
+}
+
+.error {
+    color: #ff4d4d;
+    font-size: 0.95rem;
+}
+
+.categoriesSection {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 20px;
+    align-content: start;
+}
+
+.nextBtnCon {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 5vw;
+}
+
+.nextBtn {
+    justify-self: end;
+    width: 180px;
+    height: 55px;
+    border: none;
+    border-radius: 25px;
+    background-color: #148a08;
+    color: white;
+    font-size: 1.5rem;
+    font-weight:500;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.nextBtn:hover {
+    opacity: 0.9;
+}
+
+.disableBtn {
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+/* ==========================
+   TABLETS
+========================== */
+
+@media screen and (max-width: 1024px) {
+    .categoriesPage {
+        grid-template-columns: 1fr;
+        padding: 30px;
+        gap: 30px;
+    }
+
+    .selectedSection {
+        align-items: center;
+        text-align: center;
+    }
+
+    .heading {
+        max-width: 100%;
+        font-size: 2.5rem;
+    }
+
+    .categoriesSection {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .nextBtnCon {
+        justify-content: center;
+        margin-right: 0;
+    }
+}
+
+/* ==========================
+   LARGE MOBILE
+========================== */
+
+@media screen and (max-width: 768px) {
+    .categoriesPage {
+        padding: 20px;
+    }
+
+    .title {
+        font-size: 2.5rem;
+    }
+
+    .heading {
+        font-size: 2rem;
+    }
+
+    .categoriesSection {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+
+    .selectedCategories {
+        justify-content: center;
+    }
+
+    .nextBtn {
+        width: 160px;
+        height: 50px;
+        font-size: 1.2rem;
+    }
+}
+
+/* ==========================
+   MOBILE
+========================== */
+
+@media screen and (max-width: 480px) {
+    .categoriesPage {
+        padding: 15px;
+        gap: 20px;
+    }
+
+    .title {
+        font-size: 2rem;
+        margin-bottom: 15px;
+    }
+
+    .heading {
+        font-size: 1.6rem;
+        max-width: 250px;
+        margin-bottom: 20px;
+    }
+
+    .selectedCategories {
+        gap: 8px;
+    }
+
+    .selectedCard {
+        padding: 6px 14px;
+        font-size: 0.9rem;
+    }
+
+    .categoriesSection {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .nextBtn {
+        width: 100%;
+        height: 50px;
+        font-size: 1.1rem;
+    }
+
+    .nextBtnCon {
+        width: 100%;
+    }
+}

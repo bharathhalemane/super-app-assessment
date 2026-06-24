@@ -10,7 +10,10 @@ export const useStore = create((set) => ({
   categories: [],
   notes: localStorage.getItem("super_app_notes") || "",
 
-  setUser: (userData) => set({ user: userData }),
+  setUser: (userData) => {
+    set({ user: userData })
+    console.log(userData)
+  },
   setCategories: (categoryArray) => set({ categories: categoryArray }),
   setNotes: (noteText) => {
     localStorage.setItem("super_app_notes", noteText);

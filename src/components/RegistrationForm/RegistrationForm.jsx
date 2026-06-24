@@ -41,7 +41,7 @@ const RegistrationForm = () => {
     const validateForm = () => {
         const tempErrors = {}
         const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-        const phonePatter = /^d{10}$/
+        const phonePatter = /^\d{10}$/
 
         if (!formData.name.trim()) {
             tempErrors.name = "Name field cannot be left blank."
@@ -71,7 +71,6 @@ const RegistrationForm = () => {
         e.preventDefault()
 
         if (validateForm()) {
-            console.log(formData)
             setUser(formData)
             navigate("/categories")
         }
