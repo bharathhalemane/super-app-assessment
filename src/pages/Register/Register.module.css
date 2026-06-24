@@ -1,0 +1,22 @@
+.registration{
+    display: flex;
+    flex-direction: row;    
+    background-color: #000;  
+    height: 100vh;  
+}
+
+.imageSection{
+    background-image: url('../../assets/registrationForm.jpg');
+    background-size: cover;
+    width: 50vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 30px;
+    padding-bottom: 60px;
+}
+
+.imageSection h1{
+    color: #fff;
+    font-size: 50px;
+}
