@@ -1,10 +1,12 @@
 import style from './Dashboard.module.css'
 import UserInfoCard from '../../components/UserInfoCard/UserInfoCard'
+import NewsWidget from '../../components/NewsWidget/NewsWidget'
+
 
 const Dashboard = () => {
     return <div className={style.dashboardPage}>
-        <h1>dashboard</h1>
-        <UserInfoCard size="max"/>
+        <UserInfoCard size="max" />
+        <NewsWidget/>
     </div>
 }
 

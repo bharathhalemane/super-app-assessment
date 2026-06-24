@@ -1,5 +1,6 @@
 import axios from "axios"
 
+
 const movieClient = axios.create({
   baseURL: "https://www.omdbapi.com/",
 });
