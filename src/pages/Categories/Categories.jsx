@@ -2,6 +2,7 @@ import style from "./Categories.module.css"
 import CategoryCard from "../../components/CategoryCard/CategoryCard"
 import { useState } from "react"
 import { useStore } from "../../store/useStore"
+import { useNavigate } from "react-router-dom"
 
 
 import action from "../../assets/categories/action.png";
@@ -28,6 +29,7 @@ const categories = [
 ];
 
 const Categories = () => {
+    const navigate =useNavigate()
     const setCategories = useStore((state) => state.setCategories)
 
     const [selectedCategories, setSelectedCategories] = useState([])
@@ -78,12 +80,11 @@ const Categories = () => {
                 }</div>
                 <div className={style.nextBtnCon}>
                     <button className={`${style.nextBtn} ${selectedCategories.length < 3 ? style.disableBtn : ""}`}
-                        disabled={selectedCategories.length < 3}>Next Page</button>
+                        disabled={selectedCategories.length < 3}
+                        onClick={()=> navigate("/dashboard")}
+                    >Next Page</button>
                 </div>
-
-
             </div>
-
         </div>
     </>
 }
