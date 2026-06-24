@@ -38,7 +38,7 @@ const Categories = () => {
         if (selectedCategories.includes(title)) {
             setSelectedCategories(
                 selectedCard.filter((item) => item !== title)
-            )
+            )            
         } else {
             setSelectedCategories([...selectedCategories, title])
         }
@@ -50,6 +50,10 @@ const Categories = () => {
         )
     }
 
+    const handleNextPage = () => {
+        setCategories(selectedCategories)
+        navigate("/dashboard")
+    }
     return <>
         <div className={style.categoriesPage}>
             <div className={style.selectedSection}>
@@ -81,7 +85,7 @@ const Categories = () => {
                 <div className={style.nextBtnCon}>
                     <button className={`${style.nextBtn} ${selectedCategories.length < 3 ? style.disableBtn : ""}`}
                         disabled={selectedCategories.length < 3}
-                        onClick={()=> navigate("/dashboard")}
+                        onClick={handleNextPage}
                     >Next Page</button>
                 </div>
             </div>

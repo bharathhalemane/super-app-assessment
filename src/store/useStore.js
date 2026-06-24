@@ -15,7 +15,6 @@ export const useStore = create(
       notes: "",
 
       setUser: (userData) => {
-        console.log(userData);
         set({ user: userData });
       },
 
