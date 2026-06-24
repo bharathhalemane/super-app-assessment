@@ -1,0 +1,179 @@
+.container {
+    width: 100%;
+    min-height: 220px;
+    background: #22264d;
+    border-radius: 20px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    color: white;
+    box-sizing: border-box;
+}
+
+.circle {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    border: 5px solid #FF6A6A;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    box-shadow: 0 0 0 12px #1b1f42;
+}
+
+.circle span {
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.circleContainer{
+    position: relative;
+    width: 180px;
+    height: 180px;
+}
+
+.progressRing{
+    transform: rotate(-90deg)
+}
+
+.track{
+    stroke: rgba(255, 255, 255, 0.08)
+}
+
+.progress{
+    stroke: #ff6a6a;
+    stroke-linecap: round;
+    transition: stroke-dashoffset 1s linear;
+}
+
+.timerText{
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 2rem;
+    font-weight: 700;
+    
+    width: 140px;
+    height: 140px;
+
+    margin: auto;
+    border-radius: 50%;
+
+    background: #1b1f42;
+    box-shadow: 0 0 20px rgba(0,0,0, 0.25)
+}
+
+.controls {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 500px;
+}
+
+.timerControls{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 35px
+}
+
+.timeColumn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.timeColumn p {
+    color: #b7b7b7;
+    font-size: 0.95rem;
+}
+
+.timeColumn h2 {
+    font-size: 2rem;
+    font-weight: 500;
+}
+
+.timeColumn button {
+    border: none;
+    background: transparent;
+    color: #c4c4c4;
+    cursor: pointer;
+    font-size: 1.2rem;
+}
+
+.timeColumn button:hover {
+    color: white;
+}
+
+.mainBtn {
+    width: 240px;
+    height: 46px;
+    border: none;
+    border-radius: 999px;
+    background: #FF6A6A;
+    color: white;
+    font-size: 1.1rem;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+.actionBtns {
+    display: flex;
+    gap: 12px;
+    margin-top: 15px;
+}
+
+.pauseBtn,
+.resumeBtn,
+.stopBtn {
+    width: 120px;
+    height: 46px;
+    border: none;
+    border-radius: 999px;
+    color: white;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.pauseBtn {
+    background: #f59e0b;
+}
+
+.resumeBtn {
+    background: #22c55e;
+}
+
+.stopBtn {
+    background: #ef4444;
+}
+
+.mainBtn:hover,
+.pauseBtn:hover,
+.resumeBtn:hover,
+.stopBtn:hover {
+    opacity: 0.9;
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        gap: 25px;
+    }
+
+    .controls {
+        justify-content: center;
+    }
+
+    .mainBtn {
+        width: 100%;
+    }
+}

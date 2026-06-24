@@ -3,6 +3,7 @@ import UserInfoCard from '../../components/UserInfoCard/UserInfoCard'
 import NewsWidget from '../../components/NewsWidget/NewsWidget'
 import WeatherWidget from '../../components/WeatherWidget/WeatherWidget'
 import NotesWidget from '../../components/NotesWidget/NotesWidget'
+import TimerWidget from '../../components/TimerWidget/TimerWidget'
 
 const Dashboard = ({ notes }) => {
     return !notes ? <div className={styles.dashboardPage}>
@@ -20,6 +21,7 @@ const Dashboard = ({ notes }) => {
                 </div>
                 <NotesWidget />
             </div>
+            <TimerWidget />
         </div>
         <NewsWidget />
     </div>
