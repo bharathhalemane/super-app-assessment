@@ -14,7 +14,6 @@ const NewsWidget = () => {
             try {
                 const data = await fetchTopHeadlines()
                 setNews(data)
-                console.log(data)
             } catch (error) {
                 console.error("Error fetching news:", error)
             } finally {
@@ -22,27 +21,27 @@ const NewsWidget = () => {
             }
         }
         getNews()
-    }, []) 
+    }, [])
 
     useEffect(() => {
-        if (news.length === 0) return 
+        if (news.length === 0) return
 
         const interval = setInterval(() => {
             setCurrentIndex((prev) => (prev + 1) % news.length)
         }, 5000)
 
         return () => clearInterval(interval)
-    },[news])
+    }, [news])
 
     if (loading) {
         return (
             <div className={styles.card}>
                 <Skeleton height="55%" />
-                
+
                 <div className={styles.content}>
                     <Skeleton count={1} height={35} />
                     <br />
-                    <Skeleton width={180}/>
+                    <Skeleton width={180} />
 
                     <div style={{ marginTop: "20px" }}>
                         <Skeleton count={8} />
@@ -72,8 +71,8 @@ const NewsWidget = () => {
 
             <div className={styles.content}>
                 <p>
-                    {article.description || 
-                    article.content || "No description available."}
+                    {article.description ||
+                        article.content || "No description available."}
                 </p>
             </div>
         </div>

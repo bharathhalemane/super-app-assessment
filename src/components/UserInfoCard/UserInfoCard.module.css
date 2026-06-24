@@ -1,8 +1,8 @@
 .userInfoCardMax {
     width: 45vw;
-    height: 55vh;
+    height: 50vh;
     background-color: #5746EA;
-    padding: 30px;
+    padding: 20px;
     display: flex;
     gap: 30px;
     border-radius: 20px;
@@ -10,7 +10,7 @@
 
 .userInfoCardMax .userImg {
     width: 200px;
-    height: 400px;
+    height: 380px;
     object-fit: cover;
     border-radius: 150px;
     border: 4px solid #fff;

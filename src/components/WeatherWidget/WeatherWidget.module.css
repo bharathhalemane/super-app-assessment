@@ -1,0 +1,161 @@
+.container {
+    width: 100%;
+    background: #10184f;
+    border-radius: 24px;
+    overflow: hidden;
+    color: #ffffff;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.header {
+    background: #ff4ade;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 28px;
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+
+.content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 22px 28px;
+}
+
+.section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.section p {
+    margin: 0;
+    font-size: 1rem;
+    text-transform: capitalize;
+}
+
+.section h1 {
+    margin: 0;
+    font-size: 4rem;
+    font-weight: 400;
+}
+
+.separator {
+    width: 1px;
+    height: 100px;
+    background: rgba(255, 255, 255, 0.4);
+}
+
+.info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 6px 0;
+    font-size: 1rem;
+}
+
+.info svg {
+    flex-shrink: 0;
+}
+
+/* ---------- LARGE ---------- */
+
+.max {
+    min-height: 220px;
+}
+
+.max .header {
+    font-size: 2rem;
+}
+
+.max .section h1 {
+    font-size: 4rem;
+}
+
+/* ---------- SMALL ---------- */
+
+.min {
+    min-height: 140px;
+}
+
+.min .header {
+    padding: 10px 16px;
+    font-size: 1rem;
+}
+
+.min .content {
+    padding: 14px 16px;
+}
+
+.min .separator {
+    height: 70px;
+}
+
+.min .section {
+    gap: 5px;
+}
+
+.min .section h1 {
+    font-size: 2rem;
+}
+
+.min .section p {
+    font-size: 0.75rem;
+}
+
+.min .info {
+    font-size: 0.75rem;
+    margin: 2px 0;
+}
+
+/* ---------- RESPONSIVE ---------- */
+
+@media (max-width: 768px) {
+    .content {
+        padding: 15px;
+    }
+
+    .section h1 {
+        font-size: 2.5rem;
+    }
+
+    .info {
+        font-size: 0.8rem;
+    }
+
+    .separator {
+        height: 70px;
+    }
+}
+
+@media (max-width: 500px) {
+    .header {
+        padding: 10px 15px;
+        font-size: 0.9rem;
+    }
+
+    .content {
+        gap: 10px;
+        padding: 10px;
+    }
+
+    .section h1 {
+        font-size: 1.8rem;
+    }
+
+    .section p {
+        font-size: 0.7rem;
+    }
+
+    .info {
+        font-size: 0.65rem;
+    }
+
+    .separator {
+        height: 50px;
+    }
+}

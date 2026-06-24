@@ -7,3 +7,9 @@
     justify-content: flex-start;
     gap: 100px;
 }
+
+.userWeatherSection{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
