@@ -1,12 +1,12 @@
-import { Navigate } from "react-router-dom"
-import { useStore } from '../store/useStore'
+import { Navigate } from "react-router-dom";
+import { useStore } from "../store/useStore";
 
 const ProtectedRoute = ({ children }) => {
-    const user = useStore((state) => state.user)
+  const user = useStore((state) => state.user);
 
-    const isRegistered = user.name && user.uesrname && user.email && user.mobile 
+  return user.email
+    ? children
+    : <Navigate to="/" replace />;
+};
 
-    return isRegistered ? children : <Navigate to="/" replace/>
-}
-
-export default ProtectedRoute
+export default ProtectedRoute;

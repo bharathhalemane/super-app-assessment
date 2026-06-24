@@ -10,9 +10,9 @@ const AppRoutes = () => {
             <Routes>
                 <Route path="/" element={<Register/>}/>
                 <Route path="/categories" element={
-                    
+                    <ProtectedRoute>
                         <Categories/>
-                    
+                    </ProtectedRoute>
                 }/>
             </Routes>
         </BrowserRouter>            
