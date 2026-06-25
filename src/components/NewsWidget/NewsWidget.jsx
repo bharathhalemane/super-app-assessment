@@ -8,14 +8,20 @@ const NewsWidget = () => {
     const [news, setNews] = useState([])
     const [currentIndex, setCurrentIndex] = useState(0)
     const [loading, setLoading] = useState(true)
+    const [error, setError] = useState(false)
 
     useEffect(() => {
         const getNews = async () => {
             try {
                 const data = await fetchTopHeadlines()
-                setNews(data)
+                if (data.length === 0) {
+                    setError(true)                  // ADD this
+                } else {
+                    setNews(data)
+                }
             } catch (error) {
                 console.error("Error fetching news:", error)
+                setError(true)
             } finally {
                 setLoading(false)
             }
@@ -50,8 +56,17 @@ const NewsWidget = () => {
             </div>
         )
     }
-
+    if (error || news.length === 0) {
+        return (
+            <div className={styles.card} style={{ justifyContent: "center", alignItems: "center" }}>
+                <p style={{ color: "#888", textAlign: "center", padding: "20px" }}>
+                    News unavailable right now.
+                </p>
+            </div>
+        )
+    }
     const article = news[currentIndex]
+    if (!article) return null
 
     return (
         <div className={styles.card}>

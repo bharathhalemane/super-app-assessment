@@ -1,17 +1,24 @@
-import axios from "axios"
+// src/services/newsApi.js
 
-const API_KEY = import.meta.env.VITE_NEWS_API
+export const fetchTopHeadlines = async (category = "general") => {
+    try {
+        if (import.meta.env.DEV) {
+            // Local dev — call GNews directly
+            const apiKey = import.meta.env.VITE_NEWS_API
+            const res = await fetch(
+                `https://gnews.io/api/v4/top-headlines?category=${category}&lang=en&max=10&apikey=${apiKey}`
+            )
+            const data = await res.json()
+            return data.articles || []
+        }
 
-const newsClient = axios.create({
-  baseURL: "https://newsapi.org/v2",
-});
+        // Production — go through Vercel serverless function
+        const res = await fetch(`/api/news?category=${category}`)
+        const data = await res.json()
+        return data.articles || []
 
-export const fetchTopHeadlines = async (category = "general", apiKey=API_KEY) => {
-  try {
-    const response = await newsClient.get(`/top-headlines?category=${category}&language=en&apiKey=${apiKey}`);
-    return response.data.articles || [];
-  } catch (error) {
-    console.error("News service failure:", error);
-    throw error;
-  }
-};
+    } catch (error) {
+        console.error("News service failure:", error)
+        return []
+    }
+}
