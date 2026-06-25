@@ -83,7 +83,9 @@ super-app/
 │   │   ├── newsApi.js                ← DEV: direct | PROD: /api/news proxy
 │   │   └── weatherApi.jsx            ← DEV: direct | PROD: /api/weather proxy
 │   └── store/
-│       └── useStore.js               ← Zustand store: user, categories, notes
+│   |   └── useStore.js               ← Zustand store: user, categories, notes
+|   └── utils/
+|       └──sound.jsx                  ← utility for get alram sound for 5 seconds
 ├── .env.example                      ← Template for required environment variables
 ├── vercel.json                       ← Rewrites: /api/* → functions, /* → index.html
 ├── vite.config.js
