@@ -78,7 +78,7 @@ const RegistrationForm = () => {
 
     return (
         <div className={styles.container}>
-            <form className={style.form} onSubmit={handleFormSubmission}>
+            <form className={styles.form} onSubmit={handleFormSubmission}>
 
                 <div className={styles.header}>
                     <h1 className={styles.title}>Super app</h1>
@@ -160,7 +160,7 @@ const RegistrationForm = () => {
                     )
                 }
 
-                <button type="submit" className={style.button}>
+                <button type="submit" className={styles.button}>
                     SIGN UP
                 </button>
 
