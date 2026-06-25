@@ -1,4 +1,7 @@
-.dashboardPage{
+/* ─────────────────────────────────────
+   Layout
+───────────────────────────────────── */
+.dashboardPage {
     background-color: #000;
     padding-inline: 70px;
     padding-block: 20px;
@@ -8,46 +11,53 @@
     gap: 50px;
 }
 
-.notesTimerSection{
+.notesTimerSection {
     display: flex;
-    flex-direction: column;  
-    gap: 30px;  
+    flex-direction: column;
+    gap: 30px;
 }
 
-.notesWeatherSection{
+.notesWeatherSection {
     display: flex;
     gap: 50px;
+    align-items: flex-start;
 }
 
-.userWeatherSection{
+.userWeatherSection {
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
-.newsSection{
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-}
 
-.newsSection{
+.newsSection {
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
 
-.plusBtn{
+/* ─────────────────────────────────────
+   Buttons
+───────────────────────────────────── */
+.plusBtn {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 30px;
     background-color: #148a08;
-    color:#fff;
+    color: #fff;
     border: none;
     border-radius: 50%;
-    width: 40px;
-    height: 40px;
+    width: 60px;
+    height: 60px;
     font-size: 30px;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+    flex-shrink: 0;
+    align-self: end;
+}
+
+.plusBtn:hover {
+    transform: scale(1.12) rotate(90deg);
+    background-color: #1aad0a;
 }
 
 .browserBtn {
@@ -59,11 +69,190 @@
     background-color: #148a08;
     color: white;
     font-size: 1.5rem;
-    font-weight:500;
+    font-weight: 500;
     cursor: pointer;
     margin-top: 20px;
+    transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
-.dnone{
+.browserBtn:hover {
+    opacity: 0.88;
+    transform: scale(1.04);
+}
+
+/* ─────────────────────────────────────
+   Hidden (legacy – keep for safety)
+───────────────────────────────────── */
+.dnone {
     display: none;
+}
+
+/* ─────────────────────────────────────
+   Animated show / hide
+   These replace the dnone toggle on
+   NotesWidget, TimerWidget, plusBtn,
+   and browserBtn.
+───────────────────────────────────── */
+
+/* Slide-in from the left for NotesWidget */
+.slideInLeft {
+    max-width: 500px;
+    max-height: 1000px;
+    opacity: 1;
+    transform: translateX(0);
+    overflow: hidden;
+    transition:
+        max-width 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+        max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+        opacity 0.45s ease 0.08s,
+        transform 0.45s cubic-bezier(0.4, 0, 0.2, 1) 0.08s;
+}
+
+.slideOutLeft {
+    max-width: 0;
+    max-height: 0;
+    opacity: 0;
+    transform: translateX(-30px);
+    overflow: hidden;
+    transition:
+        max-width 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+        max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+        opacity 0.3s ease,
+        transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Slide-up from below for TimerWidget */
+.slideInUp {
+    max-height: 400px;
+    opacity: 1;
+    transform: translateY(0);
+    overflow: hidden;
+    transition:
+        max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.05s,
+        opacity 0.45s ease 0.15s,
+        transform 0.45s cubic-bezier(0.4, 0, 0.2, 1) 0.1s;
+}
+
+.slideOutDown {
+    max-height: 0;
+    opacity: 0;
+    transform: translateY(20px);
+    overflow: hidden;
+    transition:
+        max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+        opacity 0.25s ease,
+        transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Fade-in for the Browse button */
+.fadeIn {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+    transition:
+        opacity 0.4s ease 0.3s,
+        transform 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0.3s;
+}
+
+.fadeOut {
+    opacity: 0;
+    transform: translateY(6px) scale(0.95);
+    pointer-events: none;
+    /* instant hide so it doesn't block the plus btn */
+    transition: opacity 0s, transform 0s;
+}
+
+/* Plus button: spin + shrink out */
+.plusVisible {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+    pointer-events: auto;
+    transition:
+        opacity 0.25s ease,
+        transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.plusHidden {
+    opacity: 0;
+    transform: scale(0.5) rotate(180deg);
+    pointer-events: none;
+    position: absolute;   /* take out of flow immediately */
+    transition:
+        opacity 0.25s ease,
+        transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ── Large tablets / small laptops ── */
+@media (max-width: 1200px) {
+    .dashboardPage {
+        padding-inline: 40px;
+        gap: 30px;
+    }
+
+    .notesWeatherSection {
+        gap: 30px;
+    }
+
+    .slideInLeft {
+        max-width: 380px;
+    }
+}
+
+/* ── Tablets ── */
+@media (max-width: 900px) {
+    .dashboardPage {
+        flex-direction: column;
+        padding-inline: 20px;
+        padding-block: 20px;
+        gap: 24px;
+    }
+
+    .notesWeatherSection {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .newsSection {
+        align-items: center;
+    }
+
+    .browserBtn {
+        align-self: center;
+    }
+
+    /* On tablet the notes slides down instead of left */
+    .slideInLeft {
+        max-width: 100%;
+        max-height: 600px;
+        transform: translateY(0);
+    }
+
+    .slideOutLeft {
+        max-width: 100%;
+        max-height: 0;
+        transform: translateY(-20px);
+    }
+}
+
+/* ── Mobile ── */
+@media (max-width: 600px) {
+    .dashboardPage {
+        padding-inline: 12px;
+        padding-block: 14px;
+        gap: 16px;
+    }
+
+    .notesTimerSection {
+        gap: 16px;
+    }
+
+    .notesWeatherSection {
+        gap: 14px;
+    }
+
+    .browserBtn {
+        width: 140px;
+        height: 44px;
+        font-size: 1.1rem;
+    }
 }

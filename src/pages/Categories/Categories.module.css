@@ -34,6 +34,7 @@
 .selectedCard {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: 8px;
     background: #11a300;
     color: white;
@@ -53,7 +54,9 @@
     background: transparent;
     color: white;
     font-size: 1rem;
-    cursor: pointer
+    cursor: pointer;
+    align-self: center;
+    padding-top: 5px;
 }
 
 .error {
@@ -188,13 +191,17 @@
     }
 
     .selectedCard {
-        padding: 6px 14px;
-        font-size: 0.9rem;
+        padding: 3px 7px;
+        font-size: 0.7rem;
     }
 
     .categoriesSection {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(3, 1fr);
         gap: 15px;
+    }
+
+    .selectedCategories button .size{
+        font-size: 12px;
     }
 
     .nextBtn {

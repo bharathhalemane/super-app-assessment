@@ -9,6 +9,8 @@
     justify-content: space-around;
     color: white;
     box-sizing: border-box;
+    flex-wrap: wrap;
+    gap: 20px;
 }
 
 .circle {
@@ -29,27 +31,28 @@
     letter-spacing: 2px;
 }
 
-.circleContainer{
+.circleContainer {
     position: relative;
     width: 180px;
     height: 180px;
+    flex-shrink: 0;
 }
 
-.progressRing{
-    transform: rotate(-90deg)
+.progressRing {
+    transform: rotate(-90deg);
 }
 
-.track{
-    stroke: rgba(255, 255, 255, 0.08)
+.track {
+    stroke: rgba(255, 255, 255, 0.08);
 }
 
-.progress{
+.progress {
     stroke: #ff6a6a;
     stroke-linecap: round;
     transition: stroke-dashoffset 1s linear;
 }
 
-.timerText{
+.timerText {
     position: absolute;
     inset: 0;
     display: flex;
@@ -58,7 +61,7 @@
 
     font-size: 2rem;
     font-weight: 700;
-    
+
     width: 140px;
     height: 140px;
 
@@ -66,7 +69,7 @@
     border-radius: 50%;
 
     background: #1b1f42;
-    box-shadow: 0 0 20px rgba(0,0,0, 0.25)
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
 }
 
 .controls {
@@ -76,13 +79,15 @@
     align-items: center;
     flex-wrap: wrap;
     width: 500px;
+    max-width: 100%;
 }
 
-.timerControls{
+.timerControls {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    gap: 35px
+    gap: 35px;
+    flex-wrap: wrap;
 }
 
 .timeColumn {
@@ -108,10 +113,16 @@
     color: #c4c4c4;
     cursor: pointer;
     font-size: 1.2rem;
+    padding: 4px;
 }
 
 .timeColumn button:hover {
     color: white;
+}
+
+.timeColumn button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
 }
 
 .mainBtn {
@@ -130,6 +141,8 @@
     display: flex;
     gap: 12px;
     margin-top: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .pauseBtn,
@@ -163,17 +176,95 @@
     opacity: 0.9;
 }
 
-@media (max-width: 768px) {
+/* ── Large tablets ── */
+@media (max-width: 1200px) {
+    .controls {
+        width: 380px;
+    }
+
+    .timerControls {
+        gap: 20px;
+    }
+
+    .timeColumn h2 {
+        font-size: 1.6rem;
+    }
+}
+
+/* ── Tablets ── */
+@media (max-width: 900px) {
     .container {
         flex-direction: column;
-        gap: 25px;
+        gap: 24px;
+        padding: 24px 16px;
     }
 
     .controls {
-        justify-content: center;
+        width: 100%;
     }
 
     .mainBtn {
         width: 100%;
+        max-width: 280px;
+    }
+
+    .timerControls {
+        gap: 24px;
+    }
+}
+
+/* ── Mobile ── */
+@media (max-width: 600px) {
+    .container {
+        padding: 16px 12px;
+        gap: 16px;
+        border-radius: 14px;
+    }
+
+    /* The SVG has hardcoded width/height="180" in JSX so CSS
+       width/height only changes the layout box — the ring's internal
+       coordinates stay at 180px and get clipped. Instead we scale()
+       the whole circleContainer (SVG + timerText together) and use
+       negative margins to reclaim the dead layout space. */
+    .circleContainer {
+        width: 180px;
+        height: 180px;
+        transform: scale(0.72);
+        transform-origin: center center;
+        margin: -25px auto;
+        flex-shrink: 0;
+    }
+
+    .timerText {
+        font-size: 1.4rem;
+        width: 140px;
+        height: 140px;
+    }
+
+    .timeColumn h2 {
+        font-size: 1.4rem;
+    }
+
+    .timeColumn p {
+        font-size: 0.8rem;
+    }
+
+    .timerControls {
+        gap: 16px;
+    }
+
+    .mainBtn {
+        width: 100%;
+        max-width: 220px;
+        height: 42px;
+        font-size: 1rem;
+    }
+
+    .pauseBtn,
+    .resumeBtn,
+    .stopBtn {
+        width: 100px;
+        height: 42px;
+        font-size: 0.9rem;
     }
 }

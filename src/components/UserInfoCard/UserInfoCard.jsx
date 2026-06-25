@@ -4,7 +4,11 @@ import userImg from "../../assets/userImg.png"
 
 const UserInfoCard = ({ size }) => {
     const user = useStore((state) => state.user)
-    const categories = useStore((state) => state.categories)
+    let categories = useStore((state) => state.categories)
+
+    if (categories.length > 4) {
+        categories = categories.slice(0,4)
+    }
 
     return <div
             className={

@@ -50,14 +50,15 @@
 
 @media screen and (max-width: 480px) {
     .cardContainer {
-        min-height: 160px;
+        min-height: 80px;
+        border-radius: 10px;
     }
 
     .title {
-        font-size: 1rem;
+        font-size: 0.7rem;
     }
 
     .img {
-        height: 100px;
+        height: 60px;
     }
 }

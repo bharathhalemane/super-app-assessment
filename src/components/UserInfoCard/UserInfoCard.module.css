@@ -1,3 +1,6 @@
+/* ═══════════════════════════════
+   MAX (default / wide layout)
+═══════════════════════════════ */
 .userInfoCardMax {
     width: 45vw;
     height: 50vh;
@@ -6,14 +9,17 @@
     display: flex;
     gap: 30px;
     border-radius: 20px;
+    box-sizing: border-box;
+    overflow: hidden;
 }
 
 .userInfoCardMax .userImg {
-    width: 200px;
-    height: 380px;
+    width: 180px;
+    height: 340px;
     object-fit: cover;
     border-radius: 150px;
     border: 4px solid #fff;
+    flex-shrink: 0;
 }
 
 .userInfoCardMax .infoSection {
@@ -21,6 +27,7 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
+    min-width: 0;
 }
 
 .userInfoCardMax .name,
@@ -36,8 +43,60 @@
     color: #fff;
     font-weight: bold;
     font-size: 50px;
+    word-break: break-word;
 }
 
+/* ═══════════════════════════════
+   MIN (compact / notes-open)
+═══════════════════════════════ */
+.userInfoCardMin {
+    width: 30vw;
+    height: 35vh;
+    background-color: #5746EA;
+    padding: 20px;
+    display: flex;
+    gap: 15px;
+    border-radius: 20px;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.userInfoCardMin .userImg {
+    width: 110px;
+    height: 230px;
+    object-fit: cover;
+    border-radius: 150px;
+    border: 4px solid #fff;
+    flex-shrink: 0;
+}
+
+.userInfoCardMin .infoSection {
+    color: #fff;
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-width: 0;
+}
+
+.userInfoCardMin .name,
+.userInfoCardMin .email {
+    font-size: 20px;
+    font-weight: 300;
+}
+
+.userInfoCardMin .category {
+    background-color: #9F94FF;
+    width: 130px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50px;
+    color: #fff;
+}
+
+/* ── Shared categories grid ── */
 .categories {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -55,45 +114,126 @@
     color: #fff;
 }
 
-.userInfoCardMin {
-    width: 30vw;
-    height: 35vh;
-    background-color: #5746EA;
-    padding: 20px;
-    display: flex;
-    gap: 15px;
-    border-radius: 20px;
+/* ── Large tablets ── */
+@media (max-width: 1200px) {
+    .userInfoCardMax {
+        width: 55vw;
+        height: auto;
+        min-height: 220px;
+    }
+
+    .userInfoCardMax .userImg {
+        width: 150px;
+        height: 280px;
+    }
+
+    .userInfoCardMax .username {
+        font-size: 36px;
+    }
+
+    .userInfoCardMax .name,
+    .email {
+        font-size: 22px;
+    }
+
+    .category {
+        width: 150px;
+        height: 42px;
+        font-size: 0.85rem;
+    }
+
+    .userInfoCardMin {
+        width: 40vw;
+    }
 }
 
-.userInfoCardMin .userImg {
-    width: 110px;
-    height: 270px;
-    object-fit: cover;
-    border-radius: 150px;
-    border: 4px solid #fff;
+/* ── Tablets ── */
+@media (max-width: 900px) {
+    .userInfoCardMax,
+    .userInfoCardMin {
+        width: 100%;
+        height: auto;
+        min-height: 160px;
+    }
+
+    .userInfoCardMax .userImg {
+        width: 120px;
+        height: 200px;
+    }
+
+    .userInfoCardMax .username {
+        font-size: 28px;
+    }
+
+    .userInfoCardMax .name,
+    .email {
+        font-size: 18px;
+    }
+
+    .userInfoCardMin .userImg {
+        width: 90px;
+        height: 160px;
+    }
+
+    .categories {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+    .category {
+        width: 120px;
+        height: 36px;
+        font-size: 0.8rem;
+    }
 }
 
-.userInfoCardMin .infoSection{
-    color: #fff;
-    margin-top: 30px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
+/* ── Mobile ── */
+@media (max-width: 600px) {
+    .userInfoCardMax,
+    .userInfoCardMin {
+        flex-direction: column;
+        align-items: center;
+        padding: 16px;
+        gap: 12px;
+        width: 90vw;
+    }
 
-.userInfoCardMin .name,
-.userInfoCardMin .email {
-    font-size: 20px;
-    font-weight: 300;
-}
+    .userInfoCardMax .userImg,
+    .userInfoCardMin .userImg {
+        width: 90px;
+        height: 90px;
+        border-radius: 50%;
+    }
 
-.userInfoCardMin .category {
-    background-color: #9F94FF;
-    width: 150px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50px;
-    color: #fff;
+    .userInfoCardMax .infoSection,
+    .userInfoCardMin .infoSection {
+        padding-top: 0;
+        margin-top: 0;
+        align-items: center;
+        text-align: center;
+    }
+
+    .userInfoCardMax .username {
+        font-size: 22px;
+    }
+
+    .userInfoCardMax .name,
+    .email,
+    .userInfoCardMin .name,
+    .userInfoCardMin .email {
+        font-size: 15px;
+    }
+
+    .categories {
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+        justify-items: center;
+    }
+
+    .category,
+    .userInfoCardMin .category {
+        width: 110px;
+        height: 32px;
+        font-size: 0.75rem;
+    }
 }

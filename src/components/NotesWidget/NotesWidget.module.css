@@ -28,6 +28,7 @@
     padding: 6px 12px;
     border-radius: 8px;
     cursor: pointer;
+    font-size: 0.9rem;
 }
 
 .notesInput {
@@ -63,4 +64,50 @@
 
 .notesInput::placeholder {
     color: #ffe6a6;
+}
+
+/* ── Large tablets ── */
+@media (max-width: 1200px) {
+    .notesCard {
+        width: 300px;
+    }
+
+    .header h2 {
+        font-size: 26px;
+    }
+}
+
+/* ── Tablets ── */
+@media (max-width: 900px) {
+    .notesCard {
+        width: 100%;
+        height: 40vh;
+        min-height: 220px;
+    }
+
+    .header h2 {
+        font-size: 24px;
+    }
+
+    .notesInput {
+        font-size: 16px;
+    }
+}
+
+/* ── Mobile ── */
+@media (max-width: 600px) {
+    .notesCard {
+        border-radius: 14px;
+        padding: 14px;
+        height: 35vh;
+        min-height: 180px;
+    }
+
+    .header h2 {
+        font-size: 20px;
+    }
+
+    .notesInput {
+        font-size: 15px;
+    }
 }

@@ -81,13 +81,16 @@
 @media (max-width: 600px) {
     .poster {
         height: 220px;
+        margin-top: -60px;
+        object-fit: cover;
     }
 
     .heading {
-        font-size: 1.4rem;
+        font-size: 1rem;
+        marign-bottom: 0;
     }
 
     .loadingRow {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(3, 1fr);
     }
 }

@@ -69,7 +69,7 @@ const Categories = () => {
                                 className={style.selectedCard}
                             >
                                 <span>{category}</span>
-                                <button onClick={() => removeCategory(category)}><X /></button>
+                                <button onClick={() => removeCategory(category)}><X size={14} /></button>
                             </div>
                         ))
                     }

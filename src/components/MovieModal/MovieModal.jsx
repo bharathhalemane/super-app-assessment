@@ -50,13 +50,13 @@ const MovieModal = ({ title }) => {
                     watchOverflow={true}
                     breakpoints={{
                         320: {
-                            slidesPerView: 1,
+                            slidesPerView: 3,
                         },
                         600: {
-                            slidesPerView: 2,
+                            slidesPerView: 4,
                         },
                         900: {
-                            slidesPerView: 3,
+                            slidesPerView: 5,
                         },
                         1200: {
                             slidesPerView: 6,
