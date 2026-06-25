@@ -34,56 +34,60 @@
 - Selected tags displayed inline with one-click removal
 
 ### 🖥️ Personalised Dashboard
-- **User Info Card** — displays your name, username, email, and chosen categories
-- **Weather Widget** — auto-detects your location via the browser Geolocation API, reverse-geocodes to a city name, and fetches live conditions (temperature, pressure, humidity, wind speed) from OpenWeatherMap
-- **News Widget** — pulls top headlines from NewsAPI and cycles through them every 5 seconds with a smooth auto-carousel
-- **Notes Widget** — a persistent scratchpad backed by Zustand store
-- **Countdown Timer** — set hours / minutes / seconds, start / pause / resume / stop, with an animated SVG progress ring
-- **Expand animation** — the `+` button reveals Notes and Timer with slide-in / fade-in transitions; the UserInfoCard and WeatherWidget gracefully shrink to compact mode
+- **User Info Card** — name, username, email, and selected genre tags; shrinks to compact mode when widgets expand
+- **Weather Widget** — auto-detects location via Geolocation API, reverse-geocodes to a city, fetches live conditions (temperature, pressure, humidity, wind) from OpenWeatherMap; also has compact mode
+- **News Widget** — top headlines from NewsAPI cycling every 5 seconds with a smooth auto-carousel; graceful fallback if unavailable
+- **Notes Widget** — persistent scratchpad saved in Zustand store
+- **Countdown Timer** — set H/M/S, start / pause / resume / stop, animated SVG progress ring
+- **`+` button animation** — pressing `+` spins and shrinks away while Notes slides in from the left and Timer slides up from below; UserInfoCard and WeatherWidget smoothly shrink to compact size
 
 ### 🎥 Movie Browser
 - Movies fetched from **OMDb API** based on your chosen genres
 - Genre-grouped sections with a horizontal movie carousel (Swiper)
 - Click any movie to open a **Movie Modal** with poster, plot, and ratings
 - Deep-link to a full **Movie Detail page** (`/movie/:imdbID`) showing IMDB / Rotten Tomatoes / Metacritic scores, cast, director, writers, box office, and awards
-
+- Skeleton loaders while data fetches
 ---
-
+ 
 ## 🗂️ Project Structure
-
+ 
 ```
 super-app/
+├── api/                              ← Vercel serverless functions (production API proxy)
+│   ├── news.js                       ← Proxies NewsAPI, keeps key server-side
+│   └── weather.js                    ← Proxies OpenWeatherMap, keeps key server-side
 ├── public/
 │   └── favicon.svg
 ├── src/
-│   ├── assets/              # Images & category artwork
+│   ├── assets/                       ← Images and category artwork
 │   ├── components/
-│   │   ├── CategoryCard/    # Selectable genre tile
-│   │   ├── MovieCard/       # Full movie detail view
-│   │   ├── MovieModal/      # Quick-view modal
-│   │   ├── NewsWidget/      # Auto-cycling news carousel
-│   │   ├── NotesWidget/     # Persistent notes textarea
-│   │   ├── RegistrationForm/# Validated sign-up form
-│   │   ├── TimerWidget/     # SVG ring countdown timer
-│   │   ├── UserInfoCard/    # Profile summary (max/min modes)
-│   │   └── WeatherWidget/   # Live weather (max/min modes)
+│   │   ├── CategoryCard/             ← Colour-coded genre selection tile
+│   │   ├── MovieCard/                ← Full movie detail page
+│   │   ├── MovieModal/               ← Genre section with Swiper carousel
+│   │   ├── NewsWidget/               ← Auto-cycling news carousel
+│   │   ├── NotesWidget/              ← Persistent textarea
+│   │   ├── RegistrationForm/         ← Validated sign-up form
+│   │   ├── TimerWidget/              ← SVG ring countdown timer
+│   │   ├── UserInfoCard/             ← Profile card (max / min modes)
+│   │   └── WeatherWidget/            ← Live weather card (max / min modes)
 │   ├── pages/
-│   │   ├── Register/        # Landing / sign-up page
-│   │   ├── Categories/      # Genre picker
-│   │   ├── Dashboard/       # Main hub
-│   │   └── Movies/          # Genre-grouped movie browser
+│   │   ├── Register/                 ← Landing / sign-up
+│   │   ├── Categories/               ← Genre picker
+│   │   ├── Dashboard/                ← Main hub with animated widget expand
+│   │   └── Movies/                   ← Genre-grouped movie browser
 │   ├── routes/
-│   │   ├── AppRoutes.jsx    # BrowserRouter + route definitions
-│   │   └── ProtectedRoute.jsx
+│   │   ├── AppRoutes.jsx             ← BrowserRouter + all route definitions
+│   │   └── ProtectedRoute.jsx        ← Redirects unauthenticated users to /
 │   ├── services/
-│   │   ├── movieApi.js      # OMDb API (search + detail)
-│   │   ├── newsApi.js       # NewsAPI top headlines
-│   │   └── weatherApi.jsx   # OpenWeatherMap current weather
+│   │   ├── movieApi.js               ← OMDb search + detail (direct, CORS-safe)
+│   │   ├── newsApi.js                ← DEV: direct | PROD: /api/news proxy
+│   │   └── weatherApi.jsx            ← DEV: direct | PROD: /api/weather proxy
 │   └── store/
-│       └── useStore.js      # Zustand store (user, categories, notes)
-├── index.html
-├── package.json
-└── vite.config.js
+│       └── useStore.js               ← Zustand store: user, categories, notes
+├── .env.example                      ← Template for required environment variables
+├── vercel.json                       ← Rewrites: /api/* → functions, /* → index.html
+├── vite.config.js
+└── package.json
 ```
 
 ---
@@ -110,7 +114,7 @@ super-app/
 | [OMDb API](https://www.omdbapi.com/) | Movie search & detail | `VITE_MOVIE_API` |
 | [NewsAPI](https://newsapi.org/) | Top headlines | `VITE_NEWS_API` |
 | [OpenWeatherMap](https://openweathermap.org/api) | Live weather data | `VITE_WEATHER_API` |
-| [BigDataCloud](https://www.bigdatacloud.com/) | Reverse geocoding (free, no key) | — |
+| [BigDataCloud](https://www.bigdatacloud.com/) | Reverse geocoding | (free, no key) |
 
 ---
 
@@ -134,20 +138,29 @@ cd super-app-assessment
 npm install
 ```
 
-### 3. Configure environment variables
-
-Create a `.env` file in the project root:
-
-```env
-VITE_MOVIE_API=your_omdb_api_key
-VITE_NEWS_API=your_newsapi_key
-VITE_WEATHER_API=your_openweathermap_api_key
+### 3. Set up environment variables
+ 
+Copy the example file and fill in your keys:
+ 
+```bash
+cp .env.example .env
 ```
-
+ 
+```env
+# .env
+ 
+# Used in local dev — browser calls these APIs directly
+VITE_NEWS_API=your_newsapi_key_here
+VITE_WEATHER_API=your_openweathermap_key_here
+ 
+# Used in both local and production
+VITE_MOVIE_API=your_omdb_key_here
+```
+ 
 > **Getting free API keys:**
-> - **OMDb** → [omdbapi.com/apikey.aspx](https://www.omdbapi.com/apikey.aspx)
 > - **NewsAPI** → [newsapi.org/register](https://newsapi.org/register)
-> - **OpenWeatherMap** → [home.openweathermap.org/users/sign_up](https://home.openweathermap.org/users/sign_up)
+> - **OpenWeatherMap** → [home.openweathermap.org/users/sign_up](https://home.openweathermap.org/users/sign_up) — new keys activate in ~10 min
+> - **OMDb** → [omdbapi.com/apikey.aspx](https://www.omdbapi.com/apikey.aspx)
 
 ### 4. Start the development server
 
@@ -157,6 +170,8 @@ npm run dev
 
 Open [http://localhost:5173](http://localhost:5173) in your browser.
 
+In local dev, the services call the external APIs directly from the browser using your `VITE_` keys — no serverless functions needed locally.
+
 ### 5. Build for production
 
 ```bash
@@ -165,52 +180,97 @@ npm run preview   # preview the production build locally
 ```
 
 ---
-
-## 🌐 Deployment
-
-The app is deployed on **Vercel**. To deploy your own fork:
-
-1. Push your fork to GitHub
-2. Import the repo at [vercel.com/new](https://vercel.com/new)
-3. Add the three environment variables (`VITE_MOVIE_API`, `VITE_NEWS_API`, `VITE_WEATHER_API`) in the Vercel project settings under **Environment Variables**
-4. Deploy — Vercel auto-detects Vite and sets the correct build command (`npm run build`) and output directory (`dist`)
-
+ 
+## 🌐 Deploying to Vercel
+ 
+### 1. Push to GitHub and import on Vercel
+ 
+Go to [vercel.com/new](https://vercel.com/new), import the repo. Vercel auto-detects Vite.
+ 
+### 2. Add environment variables in Vercel dashboard
+ 
+Go to **Project → Settings → Environment Variables** and add:
+ 
+| Name | Value | Note |
+|---|---|---|
+| `NEWS_API` | your NewsAPI key | No `VITE_` prefix — server only |
+| `WEATHER_API` | your OpenWeatherMap key | No `VITE_` prefix — server only |
+| `VITE_MOVIE_API` | your OMDb key | `VITE_` prefix — frontend safe |
+ 
+Make sure **Production**, **Preview**, and **Development** are all ticked for each variable.
+ 
+### 3. Deploy
+ 
+Click **Deploy**. Vercel automatically runs `npm run build` and serves the `dist/` folder. The `api/` folder is deployed as serverless functions.
+ 
+### 4. Verify the functions work
+ 
+Open these URLs directly after deploy — both should return JSON:
+ 
+```
+https://your-app.vercel.app/api/news?category=general
+https://your-app.vercel.app/api/weather?city=Bangalore
+```
+ 
+If they return `{ "articles": [] }` or `{ "error": "..." }`, check **Vercel → Deployments → Functions tab** for server-side logs.
+ 
 ---
-
+ 
+## 🔄 How the API proxy works
+ 
+```
+LOCAL DEV (npm run dev)
+  Browser → NewsAPI / OpenWeatherMap directly
+  Uses VITE_NEWS_API / VITE_WEATHER_API from .env ✅
+ 
+PRODUCTION (Vercel)
+  Browser → /api/news  → Vercel function → NewsAPI        (key hidden) ✅
+  Browser → /api/weather → Vercel function → OpenWeatherMap (key hidden) ✅
+  Browser → OMDb directly (CORS-safe, key in bundle is acceptable) ✅
+```
+ 
+The `import.meta.env.DEV` flag in each service file handles switching automatically — no manual changes between environments.
+ 
+---
+ 
 ## 📱 App Flow
-
+ 
 ```
 / (Register)
-    │  fill name, username, email, mobile + consent
+    │  name · username · email · mobile · consent checkbox
     ▼
 /categories
     │  select ≥ 3 genres → Next Page
     ▼
 /dashboard
     │  UserInfoCard · WeatherWidget · NewsWidget
-    │  [+] → NotesWidget · TimerWidget slide in
+    │  [+] animates → NotesWidget slides in · TimerWidget slides up
     │  [Browse] →
     ▼
 /movies
-    │  genre-grouped carousel (OMDb)
+    │  genre-grouped Swiper carousels (OMDb)
     │  click poster →
     ▼
 /movie/:imdbID
-    └── Full detail: ratings, cast, box office, awards
+    └── Full detail: poster · ratings · cast · director · writers · box office · awards
 ```
-
+ 
 ---
-
-## 🔑 Key Implementation Details
-
-**Protected routes** — `ProtectedRoute` reads `user.email` from the Zustand store. Any route without a valid email redirects to `/`.
-
-**Persistent state** — Zustand's `persist` middleware saves user data, selected categories, and notes to `localStorage` under the key `super-app-storage`, so the session survives a page refresh.
-
-**Geolocation + weather** — The Weather Widget calls `navigator.geolocation.getCurrentPosition`, then reverse-geocodes the coordinates with BigDataCloud's free API to get a city name before hitting OpenWeatherMap.
-
-**Dashboard expand animation** — Instead of toggling `display: none`, the `+` button swaps CSS classes that animate `max-width` / `max-height` + `opacity` + `transform`, giving smooth slide-in transitions for the Notes and Timer widgets without any JS animation library.
-
+ 
+## 🔑 Key Implementation Notes
+ 
+**Protected routes** — `ProtectedRoute` reads `user.email` from Zustand. Any page without a valid email redirects to `/`.
+ 
+**Persistent state** — Zustand's `persist` middleware saves user data, categories, and notes to `localStorage` under `super-app-storage`. Refreshing the page keeps you logged in.
+ 
+**Geolocation chain** — WeatherWidget calls `navigator.geolocation`, reverse-geocodes the coordinates with BigDataCloud's free API to get a city name, then passes it to the weather service.
+ 
+**Dashboard expand animation** — toggling `display: none` can't be animated. Instead, CSS classes swap `max-width` / `max-height` + `opacity` + `transform` so Notes slides in from the left and Timer slides up, with the `+` button spinning and shrinking away — all done in pure CSS, no animation library.
+ 
+**Serverless API proxy** — `api/news.js` and `api/weather.js` use Axios on the server side. `res.end(JSON.stringify(data))` is used instead of `res.json()` for compatibility with Vercel's Node runtime across versions.
+ 
+**`vercel.json` rewrites** — ensures `/api/*` routes hit the serverless functions and all other routes fall through to `index.html` for client-side routing to work correctly.
+ 
 ---
 
 ## 📄 License
@@ -220,5 +280,5 @@ This project was built as a frontend assessment. Feel free to fork and build on 
 ---
 
 <div align="center">
-  Made with ❤️ using React + Vite &nbsp;|&nbsp; <a href="https://super-app-assessment.vercel.app/">Live Demo →</a>
+  Made with using React + Vite &nbsp;|&nbsp; <a href="https://super-app-assessment.vercel.app/">Live Demo →</a>
 </div>
