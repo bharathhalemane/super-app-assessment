@@ -1,8 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Single+Day&display=swap');
-*{
-  margin: 0;
-  font-family: "Roboto", sans-serif;
+
+* {
+    margin: 0;
+    font-family: "Roboto", sans-serif;
 }
 
 
@@ -20,9 +21,13 @@
 }
 
 *::-webkit-scrollbar-thumb:hover {
-    background:#333;
+    background: #333;
 }
 
 *::placeholder {
     color: #ffe6a6;
+}
+
+#root {
+    background-color: #000;
 }

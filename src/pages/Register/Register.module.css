@@ -1,11 +1,11 @@
-.registration{
+.registration {
     display: flex;
-    flex-direction: row;    
-    background-color: #000;  
-    min-height: 100vh;  
+    flex-direction: row;
+    background-color: #000;
+    min-height: 100vh;
 }
 
-.imageSection{
+.imageSection {
     background-image: url('../../assets/registrationForm.jpg');
     background-size: cover;
     width: 50vw;
@@ -16,20 +16,26 @@
     padding-bottom: 60px;
 }
 
-.imageSection h1{
+.imageSection h1 {
     color: #fff;
     font-size: 50px;
 }
 
-@media (max-width: 480px){
-    .imageSection{
+@media (max-width: 480px) {
+    .registration {
+        max-height: 100vh;
+    }
+
+    .imageSection {
         display: none;
     }
-    .registrationSection{
+
+    .registrationSection {
         width: 100%;
         min-height: 100vh;
     }
-    .registration{
+
+    .registration {
         align-items: center;
         justify-content: center;
     }

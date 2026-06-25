@@ -1,5 +1,7 @@
 import styles from "./TimerWidget.module.css"
 import { useEffect, useRef, useState } from "react"
+import { playTimerDone } from "../../utils/sounds"
+import { Bell, X } from "lucide-react"
 
 const TimerWidget = () => {
     const [hours, setHours] = useState(0)
@@ -9,6 +11,7 @@ const TimerWidget = () => {
     const [timeLeft, setTimeLeft] = useState(0)
     const [isRunning, setIsRunning] = useState(false)
     const [isPaused, setIsPaused] = useState(false)
+    const [finished, setFinished] = useState(false)
 
     const intervalRef = useRef(null)
     const initialTimeRef = useRef(0)
@@ -26,6 +29,7 @@ const TimerWidget = () => {
     const startTimer = () => {
         if (totalSeconds <= 0) return
 
+        setFinished(false)
         initialTimeRef.current = totalSeconds
         setTimeLeft(totalSeconds)
         setIsRunning(true)
@@ -48,7 +52,13 @@ const TimerWidget = () => {
         setTimeLeft(initialTimeRef.current);
         setIsRunning(false);
         setIsPaused(false);
+        setFinished(false)
     };
+
+    const dismissFinished = () => {
+        setFinished(false)
+        setTimeLeft(initialTimeRef.current)
+    }
 
     const progress = initialTimeRef.current > 0 ? (timeLeft / initialTimeRef.current) * 100
         : 100
@@ -65,8 +75,9 @@ const TimerWidget = () => {
                     clearInterval(intervalRef.current)
                     setIsRunning(false)
                     setIsPaused(false)
+                    setFinished(true)
 
-                    alert("Time's Up!")
+                    playTimerDone()
 
                     window.dispatchEvent(
                         new CustomEvent("timerFinished")
@@ -99,6 +110,15 @@ const TimerWidget = () => {
 
     return (
         <div className={styles.container}>
+            {
+                finished && (
+                    <div className={styles.doneBanner}>
+                        <span><Bell color="#FEDF60" size={25} /> Time's Up!</span>
+                        <button className={styles.dismissBtn} onClick={dismissFinished}><X size={25} /></button>
+                    </div>
+                )
+            }
+
             <div className={styles.circleContainer}>
                 <svg className={styles.progressRing} width="180" height="180">
                     <circle className={styles.track}
