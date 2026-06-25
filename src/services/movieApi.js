@@ -7,7 +7,6 @@ const movieClient = axios.create({
 
 
 export const searchMovieByGenre = async (query, apiKey = API_KEY) => {
-  console.log(query)
   try {
     const response = await movieClient.get(`/?s=${encodeURIComponent(query)}&type=movie&apikey=${apiKey}`);
     return response.data.Search || [];
@@ -17,7 +16,7 @@ export const searchMovieByGenre = async (query, apiKey = API_KEY) => {
   }
 };
 
-export const fetchMovieDetails = async (imdbID, apiKey=API_KEY) => {
+export const fetchMovieDetails = async (imdbID, apiKey = API_KEY) => {
   try {
     const response = await movieClient.get(`/?i=${imdbID}&plot=full&apikey=${apiKey}`);
     return response.data;

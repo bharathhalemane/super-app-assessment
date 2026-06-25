@@ -5,7 +5,7 @@ import Register from "../pages/Register/Register"
 import Categories from "../pages/Categories/Categories"
 import Dashboard from "../pages/Dashboard/Dashboard"
 import Movies from "../pages/Movies/Movies"
-// import MovieModal from "../pages/test"
+import MovieCard from "../components/MovieCard/MovieCard"
 
 const AppRoutes = () => {
     return (
@@ -27,9 +27,9 @@ const AppRoutes = () => {
                         <Movies />
                     </ProtectedRoute>
                 } />
-                <Route path="/movie/:imdbId" element={
+                <Route path="/movie/:imdbID" element={
                     <ProtectedRoute>
-                        
+                        <MovieCard />
                     </ProtectedRoute>
                 } />
             </Routes>
