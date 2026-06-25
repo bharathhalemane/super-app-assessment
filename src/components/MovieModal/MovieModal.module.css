@@ -1,0 +1,93 @@
+.MovieModalCard {
+    margin-block: 20px;
+}
+
+.MovieModalCard h1 {
+    color: #878787;
+    font-size: 20px;
+    margin-block: 10px;
+
+}
+
+.container {
+    width: 100%;
+    margin: 25px 0;
+}
+
+.heading {
+    color: #878787;
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 18px;
+}
+
+.card {
+    width: 100%;
+    cursor: pointer;
+    border-radius: 14px;
+    overflow: hidden;
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.card:hover {
+    transform: scale(1.08);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.45);
+    z-index: 5;
+}
+
+.poster {
+    width: 100%;
+    height: 180px;
+    object-fit: scale-down;
+    display: block;
+    border-radius: 14px;
+}
+
+.loadingRow {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 22px;
+}
+
+:global(.swiper) {
+    overflow: visible;
+}
+
+:global(.swiper-wrapper) {
+    padding: 10px 0 25px;
+}
+
+:global(.swiper-slide) {
+    height: auto;
+}
+
+:global(.swiper-slide-active),
+:global(.swiper-slide-next) {
+    overflow: visible;
+}
+
+@media (max-width: 1200px) {
+    .poster {
+        height: 170px;
+    }
+}
+
+@media (max-width: 900px) {
+    .poster {
+        height: 160px;
+    }
+}
+
+@media (max-width: 600px) {
+    .poster {
+        height: 220px;
+    }
+
+    .heading {
+        font-size: 1.4rem;
+    }
+
+    .loadingRow {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

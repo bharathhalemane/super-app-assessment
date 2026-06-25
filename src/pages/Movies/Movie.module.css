@@ -1,0 +1,43 @@
+.moviesPage{
+    background-color: #000;
+    padding: 30px;
+    min-height: 100vh;
+}
+
+.header{
+    position: fixed;
+    margin: -40px;
+    margin-bottom: 30px;    
+    width: 98vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-inline: 30px;
+    padding-block: 10px;
+    padding-right: 50px;
+    background-color: #000000b5;
+    z-index: 100;
+}
+
+.header h1{
+    font-family: "Single day", cursive;
+    font-size: 50px;
+    color: #72DB73;
+    
+}
+
+.profile{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    object-fit: cover;
+}
+
+.description{
+    color: #fff;
+    font-family: "Roboto";
+    margin-top: 60px;
+    font-size: 20px;
+}
+
