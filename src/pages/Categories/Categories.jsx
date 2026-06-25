@@ -1,4 +1,4 @@
-import style from "./Categories.module.css"
+import styles from "./Categories.module.css"
 import CategoryCard from "../../components/CategoryCard/CategoryCard"
 import { useState } from "react"
 import { useStore } from "../../store/useStore"
@@ -55,18 +55,18 @@ const Categories = () => {
         navigate("/dashboard")
     }
     return <>
-        <div className={style.categoriesPage}>
-            <div className={style.selectedSection}>
-                <h1 className={style.title}>Super app</h1>
-                <p className={style.heading}>
+        <div className={styles.categoriesPage}>
+            <div className={styles.selectedSection}>
+                <h1 className={styles.title}>Super app</h1>
+                <p className={styles.heading}>
                     Choose your entertainment category
                 </p>
-                <div className={style.selectedCategories}>
+                <div className={styles.selectedCategories}>
                     {
                         selectedCategories.map((category) => (
                             <div
                                 key={category}
-                                className={style.selectedCard}
+                                className={styles.selectedCard}
                             >
                                 <span>{category}</span>
                                 <button onClick={() => removeCategory(category)}><X size={14} /></button>
@@ -74,16 +74,16 @@ const Categories = () => {
                         ))
                     }
                 </div>
-                <p className={style.error}>Minimum 3 category required</p>
+                <p className={styles.error}>Minimum 3 category required</p>
             </div>
-            <div className={style.rightSection}>
-                <div className={style.categoriesSection}>{
+            <div className={styles.rightSection}>
+                <div className={styles.categoriesSection}>{
                     categories.map((item, index) => (
                         <CategoryCard key={index} title={item.title} selected={selectedCategories.includes(item.title)} image={item.image} onClick={() => handleSelectedCategory(item.title)} />
                     ))
                 }</div>
-                <div className={style.nextBtnCon}>
-                    <button className={`${style.nextBtn} ${selectedCategories.length < 3 ? style.disableBtn : ""}`}
+                <div className={styles.nextBtnCon}>
+                    <button className={`${styles.nextBtn} ${selectedCategories.length < 3 ? styles.disableBtn : ""}`}
                         disabled={selectedCategories.length < 3}
                         onClick={handleNextPage}
                     >Next Page</button>

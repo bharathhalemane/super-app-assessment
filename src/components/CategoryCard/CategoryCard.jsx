@@ -1,4 +1,4 @@
-import style from "./CategoryCard.module.css"
+import styles from "./CategoryCard.module.css"
 
 const colors = {
     Action: "#FF5209",
@@ -14,13 +14,13 @@ const colors = {
 
 const CategoryCard = ({ title, image, selected, onClick }) => {
     return (
-        <div className={style.cardContainer} style={{
+        <div className={styles.cardContainer} style={{
             backgroundColor: colors[title],
             border: selected ? "4px solid #11b800" : "none"
         }}
         onClick={onClick}>
-            <h1 className={style.title}>{title}</h1>
-            <img className={style.img} src={image} alt={title} />
+            <h1 className={styles.title}>{title}</h1>
+            <img className={styles.img} src={image} alt={title} />
         </div>
     )
 }

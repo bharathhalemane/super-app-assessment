@@ -1,4 +1,4 @@
-import style from "./RegistrationForm.module.css";
+import styles from "./RegistrationForm.module.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useStore } from "../../store/useStore";
@@ -77,78 +77,78 @@ const RegistrationForm = () => {
     }
 
     return (
-        <div className={style.container}>
+        <div className={styles.container}>
             <form className={style.form} onSubmit={handleFormSubmission}>
 
-                <div className={style.header}>
-                    <h1 className={style.title}>Super app</h1>
-                    <h3 className={style.subtitle}>
+                <div className={styles.header}>
+                    <h1 className={styles.title}>Super app</h1>
+                    <h3 className={styles.subtitle}>
                         Create your new account
                     </h3>
                 </div>
 
-                <div className={style.inputGroup}>
+                <div className={styles.inputGroup}>
                     <input
                         type="text"
                         name="name"
                         placeholder="Name"
                         value={formData.name}
                         onChange={handleChange}
-                        className={style.input}
+                        className={styles.input}
                     />
                     {
                         errors.name && (
-                            <span className={style.error}>{errors.name}</span>
+                            <span className={styles.error}>{errors.name}</span>
                         )
                     }
                 </div>
-                <div className={style.inputGroup}>
+                <div className={styles.inputGroup}>
                     <input
                         type="text"
                         name="username"
                         placeholder="UserName"
                         value={formData.username}
                         onChange={handleChange}
-                        className={style.input}
+                        className={styles.input}
                     />
                     {
                         errors.username && (
-                            <span className={style.error}>{errors.username}</span>
+                            <span className={styles.error}>{errors.username}</span>
                         )
                     }
                 </div>
-                <div className={style.inputGroup}>
+                <div className={styles.inputGroup}>
                     <input
                         type="email"
                         name="email"
                         placeholder="Email"
                         value={formData.email}
                         onChange={handleChange}
-                        className={style.input}
+                        className={styles.input}
                     />
                     {
                         errors.email && (
-                            <span className={style.error}>{errors.email}</span>
+                            <span className={styles.error}>{errors.email}</span>
                         )
                     }
                 </div>
-                <div className={style.inputGroup}>
+                <div className={styles.inputGroup}>
                     <input
                         type="tel"
                         name="mobile"
                         placeholder="Mobile"
                         value={formData.mobile}
                         onChange={handleChange}
-                        className={style.input}
+                        className={styles.input}
                     />
                     {
                         errors.mobile && (
-                            <span className={style.error}>{errors.mobile}</span>
+                            <span className={styles.error}>{errors.mobile}</span>
                         )
                     }
                 </div>
 
-                <div className={style.checkboxContainer}>
+                <div className={styles.checkboxContainer}>
                     <input type="checkbox" id="checkbox" checked={isChecked} onChange={handleChecked} />
                     <label htmlFor="checkbox">
                         Share my registration data with Superapp
@@ -156,7 +156,7 @@ const RegistrationForm = () => {
                 </div>
                 {
                     errors.checkbox && (
-                        <span className={style.error}>{errors.checkbox}</span>
+                        <span className={styles.error}>{errors.checkbox}</span>
                     )
                 }
 
@@ -164,12 +164,12 @@ const RegistrationForm = () => {
                     SIGN UP
                 </button>
 
-                <p className={style.text}>
+                <p className={styles.text}>
                     By clicking on Sign up, you agree to Superapp{" "}
                     <a href="/">Terms and Conditions of Use</a>
                 </p>
 
-                <p className={style.text}>
+                <p className={styles.text}>
                     To learn more about how Superapp collects, uses, shares and
                     protects your personal data please head Superapp{" "}
                     <a href="/">Privacy Policy</a>
