@@ -30,6 +30,26 @@
     align-items: flex-end;
 }
 
+.newsSection{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.plusBtn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    background-color: #148a08;
+    color:#fff;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 30px;
+}
+
 .browserBtn {
     align-self: flex-end;
     width: 180px;
@@ -42,4 +62,8 @@
     font-weight:500;
     cursor: pointer;
     margin-top: 20px;
+}
+
+.dnone{
+    display: none;
 }

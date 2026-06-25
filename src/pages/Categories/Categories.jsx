@@ -52,7 +52,7 @@ const Categories = () => {
 
     const handleNextPage = () => {
         setCategories(selectedCategories)
-        navigate("/dashboard-notes")
+        navigate("/dashboard")
     }
     return <>
         <div className={style.categoriesPage}>
