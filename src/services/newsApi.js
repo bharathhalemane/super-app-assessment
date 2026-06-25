@@ -3,12 +3,14 @@
 export const fetchTopHeadlines = async (category = "general") => {
     try {
         if (import.meta.env.DEV) {
-            // Local dev — call GNews directly
-            const apiKey = import.meta.env.VITE_NEWS_API
+            // Local dev — call News directly
+          const apiKey = import.meta.env.VITE_NEWS_API
+          console.log(apiKey)
             const res = await fetch(
-                `https://gnews.io/api/v4/top-headlines?category=${category}&lang=en&max=10&apikey=${apiKey}`
+                `https://newsapi.org/v2/top-headlines?category=${category}&lang=en&apikey=${apiKey}`
             )
-            const data = await res.json()
+          const data = await res.json()
+          console.log(data)
             return data.articles || []
         }
 

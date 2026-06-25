@@ -6,7 +6,7 @@ export default async function handler(req, res) {
     res.setHeader("Content-Type", "application/json")
 
     const apiKey = process.env.NEWS_API
-
+    console.log(apiKey)
     if (!apiKey) {
         console.error("NEWS_API not set")
         return res.end(JSON.stringify({ articles: [] }))
@@ -16,12 +16,11 @@ export default async function handler(req, res) {
 
     try {
         const { data } = await axios.get(
-            "https://gnews.io/api/v4/top-headlines",
+            "https://newsapi.org/v2/top-headlines",
             {
                 params: {
                     category,
                     lang: "en",
-                    max: 10,
                     apikey: apiKey
                 },
                 timeout: 8000
@@ -31,7 +30,7 @@ export default async function handler(req, res) {
         return res.end(JSON.stringify({ articles: data.articles || [] }))
 
     } catch (error) {
-        console.error("GNews error:", error?.response?.data || error.message)
+        console.error("News error:", error?.response?.data || error.message)
         return res.end(JSON.stringify({ articles: [] }))
     }
 }
